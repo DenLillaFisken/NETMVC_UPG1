@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVCUpg1.Services.Identity;
 using NETMVC_Upg1.Data;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,18 @@ namespace NETMVC_Upg1
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, AppUserClaims>();
+            services.AddScoped<IIdentityService, IdentityService>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admins", builder => builder.RequireRole("Admin"));
+            });
+
+            
+
+            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders().AddDefaultUI();
             services.AddControllersWithViews();
         }
 

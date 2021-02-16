@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NETMVC_Upg1.Data
 {
-    public class AppUser
+    public class AppUser : IdentityUser
     {
         [Required]
         [PersonalData]

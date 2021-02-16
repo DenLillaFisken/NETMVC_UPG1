@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NETMVC_Upg1.Data;
 
 namespace NETMVC_Upg1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210212141758_init1")]
+    partial class init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,9 +210,6 @@ namespace NETMVC_Upg1.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("SchoolClassViewModelId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -231,8 +230,6 @@ namespace NETMVC_Upg1.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("SchoolClassViewModelId");
-
                     b.ToTable("AspNetUsers");
                 });
 
@@ -241,12 +238,7 @@ namespace NETMVC_Upg1.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Classes");
                 });
@@ -300,27 +292,6 @@ namespace NETMVC_Upg1.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("NETMVC_Upg1.Data.AppUser", b =>
-                {
-                    b.HasOne("NETMVC_Upg1.Models.SchoolClassViewModel", null)
-                        .WithMany("Users")
-                        .HasForeignKey("SchoolClassViewModelId");
-                });
-
-            modelBuilder.Entity("NETMVC_Upg1.Models.SchoolClassViewModel", b =>
-                {
-                    b.HasOne("NETMVC_Upg1.Data.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NETMVC_Upg1.Models.SchoolClassViewModel", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

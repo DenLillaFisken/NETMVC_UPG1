@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NETMVC_Upg1.Data;
 
 namespace NETMVC_Upg1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210212151938_init3")]
+    partial class init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,12 +243,12 @@ namespace NETMVC_Upg1.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Classes");
                 });
@@ -305,22 +307,22 @@ namespace NETMVC_Upg1.Data.Migrations
             modelBuilder.Entity("NETMVC_Upg1.Data.AppUser", b =>
                 {
                     b.HasOne("NETMVC_Upg1.Models.SchoolClassViewModel", null)
-                        .WithMany("Users")
+                        .WithMany("Students")
                         .HasForeignKey("SchoolClassViewModelId");
                 });
 
             modelBuilder.Entity("NETMVC_Upg1.Models.SchoolClassViewModel", b =>
                 {
-                    b.HasOne("NETMVC_Upg1.Data.AppUser", "User")
+                    b.HasOne("NETMVC_Upg1.Data.AppUser", "Users")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UsersId");
 
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("NETMVC_Upg1.Models.SchoolClassViewModel", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,3 +1,7 @@
 ﻿@using NETMVC_Upg1
 @using NETMVC_Upg1.Models
+@using NETMVC_Upg1.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

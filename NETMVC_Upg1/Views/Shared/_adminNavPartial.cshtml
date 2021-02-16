@@ -1,0 +1,23 @@
+﻿@if (SignInManager.IsSignedIn(User))
+{
+    @if (User.IsInRole("Admin"))
+    {
+
+        <div class="container">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Skapa Användare</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" aria-current="page" asp-controller="SchoolClasses" asp-action="Create">Skapa Klasser</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" aria-current="page" asp-controller="Admins" asp-action="Classes">Kurser</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" aria-current="page" asp-controller="Admins" asp-action="Settings">Inställningar</a>
+                </li>
+            </ul>
+        </div>
+    }
+}
