@@ -29,35 +29,34 @@ namespace NETMVC_Upg1.Controllers
             _identityService = identityService;
         }
 
-        
-
         public async Task<IActionResult> Index()
         {
             await _identityService.CreateRootAccountAsync();
             return View(_context.Users.ToList());
         }
 
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Admin")]
         public IActionResult Courses()
         {
             return View();
         }
-        [Authorize(Roles = "User")]
+
+        [Authorize(Roles = "User, Admin")]
         public IActionResult Grades()
         {
             return View();
         }
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Admin")]
         public IActionResult Schedule()
         {
             return View();
         }
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Admin")]
         public IActionResult Litterature()
         {
             return View();
         }
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Admin")]
         public IActionResult LIA()
         {
             return View();

@@ -53,20 +53,6 @@ namespace NETMVC_Upg1.Controllers
 
             return View(schoolClass);
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Create(CreateUserViewModel model)
-        //{
-        //    var user = new AppUser()
-        //    {
-        //        FirstName = model.FirstName,
-        //        LastName = model.LastName,
-        //        Email = model.Email,
-        //        UserName = model.Email,
-        //    };
-        //    await _identityService.CreateNewUserAsync(model, model.Password);
-        //    return RedirectToAction("Index");
-        //}
         public IActionResult Classes()
         {
             return View();
